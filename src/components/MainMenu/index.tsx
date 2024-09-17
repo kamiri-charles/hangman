@@ -5,8 +5,9 @@ interface MainMenuProps {
 }
 
 const MainMenu: React.FC<MainMenuProps> = ({changePage}) => {
+    
     return (
-        <div className="main-menu">
+        <div className="wrapper-card">
             <div className="game-title">Hangman</div>
 
             <div className="play-btn" onClick={() => changePage("categories")}>

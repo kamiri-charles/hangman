@@ -13,9 +13,9 @@ const Categories: React.FC<CategoriesProps> = ({ changePage, selectCategory }) =
 	};
 
 	return (
-		<div className="categories">
+		<div className="wrapper-card">
 			<div className="categories-title">
-				<div className="back-btn" onClick={() => changePage("main_menu")}>
+				<div className="back-btn" onClick={() => changePage("main-menu")}>
 					<i className="bx bx-arrow-back"></i>
 				</div>
 				<div>Pick a Category</div>
