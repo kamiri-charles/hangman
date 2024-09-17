@@ -1,10 +1,14 @@
 import "./styles.css";
 
-const Categories: React.FC = () => {
+interface CategoriesProps {
+	changePage: (page: string) => void;
+}
+
+const Categories: React.FC<CategoriesProps> = ({changePage}) => {
   return (
     <div className="categories">
         <div className="categories-title">
-            <div className="back-btn"><i className="bx bx-arrow-back"></i></div>
+            <div className="back-btn" onClick={() => changePage("main_menu")}><i className="bx bx-arrow-back"></i></div>
             <div>Pick a Category</div>
         </div>
 
