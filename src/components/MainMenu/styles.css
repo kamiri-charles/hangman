@@ -3,17 +3,22 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 400px;
-    background: white;
-    border-radius: 10px;
+    width: 800px;
+    height: 600px;
 
     display: flex;
+
+    backdrop-filter: blur(0px) saturate(180%);
+    -webkit-backdrop-filter: blur(0px) saturate(180%);
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    color: white;
 }
 
 .game-title {
-    font-size: 30px;
-    font-weight: 600;
+    font-family: "Bangers", system-ui;
+    font-size: 80px;
     margin: 40px auto;
 }
 
@@ -29,6 +34,8 @@
     display: grid;
     place-items: center;
     font-size: 90px;
+    background: white;
+    color: black;
 
     cursor: pointer;
     transition: all 0.3s ease;

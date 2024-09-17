@@ -11,9 +11,6 @@ const Game: React.FC<GameProps> = ({category, changePage}) => {
 			String.fromCharCode(97 + i)
 		);
 
-        console.log(alphabet);
-        
-
 	return (
     <div className="game">
         <div className="game-header">

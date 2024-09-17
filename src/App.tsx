@@ -8,10 +8,15 @@ import "./App.css";
 function App() {
 	const [currentPage, setCurrentPage] = useState<string>("");
 	const [selectedCategory, setSelectedCategory] = useState<string>("");
+	const [backgroundImage, setBackgroundImage] = useState<string>("");
 
 	useEffect(() => {
 		setCurrentPage("main_menu");
 		setSelectedCategory("None");
+
+		// Fetch a random image from the Picsum API
+		const randomImageUrl = `https://picsum.photos/${window.innerWidth}/${window.innerHeight}`;
+		setBackgroundImage(randomImageUrl);
 	}, []);
 
 	const renderPage = () => {
@@ -19,7 +24,12 @@ function App() {
 			case "main_menu":
 				return <MainMenu changePage={setCurrentPage} />;
 			case "categories":
-				return <Categories changePage={setCurrentPage} selectCategory={setSelectedCategory} />;
+				return (
+					<Categories
+						changePage={setCurrentPage}
+						selectCategory={setSelectedCategory}
+					/>
+				);
 			case "game":
 				return <Game category={selectedCategory} changePage={setCurrentPage} />;
 			default:
@@ -28,7 +38,16 @@ function App() {
 	};
 
 	return (
-		<div id="App">
+		<div
+			id="App"
+			style={{
+				backgroundImage: `url(${backgroundImage})`,
+				backgroundSize: "cover",
+				backgroundPosition: "center",
+				height: "100vh",
+				width: "100vw",
+			}}
+		>
 			{/* Render different components based on currentPage */}
 			{renderPage()}
 		</div>
