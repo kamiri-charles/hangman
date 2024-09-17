@@ -40,11 +40,39 @@
 .play-area {
     width: 90%;
     height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     margin: 0 auto;
+    padding: 20px;
 }
 
-.letters {
-    width: 80%;
+.word {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 600;
+}
+
+.letter {
+    margin: 5px;
+    background: white;
+    color: black;
+    border-radius: 10px;
+    padding: 10px 15px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.letter.found {
+    background: limegreen;
+    color: black;
+} 
+
+.keys {
+    width: 60%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -52,12 +80,18 @@
     margin: 0 auto;
 }
 
-.letter {
+.key {
     font-size: 20px;
     padding: 10px 20px;
     margin: 5px;
-    background: white;
+    background: skyblue;
     color: black;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.key.used {
+    background: gray;
+    color: white;
 }

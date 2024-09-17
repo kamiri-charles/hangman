@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 #App {
   width: 100vw;
@@ -8,7 +9,7 @@
   background: linear-gradient(to right, #2948ff, #396afc);
   overflow: hidden;
 
-  font-family: cursive;
+  font-family: "Roboto", sans-serif;
 }
 
 .wrapper-card {
