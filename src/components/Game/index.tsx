@@ -9,6 +9,7 @@ interface GameProps {
 
 const Game: React.FC<GameProps> = ({ category, changePage }) => {
 	const [loading, setLoading] = useState<boolean>(true);
+	const [paused, setPaused] = useState<boolean>(false);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -25,12 +26,27 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 
     if (loading) {
         return <Loader />
-    } else {
+
+    } else if (!loading && paused) {
+		return (
+			<div className="wrapper-card">
+
+				<div className="game-title">HANGMAN</div>
+				
+				<div className="pause-buttons">
+					<div className="ps-btn" onClick={() => setPaused(false)}>Continue</div>
+					<div className="ps-btn" onClick={() => changePage("categories")}>New Category</div>
+					<div className="ps-btn" onClick={() => changePage("main-menu")}>Main Menu</div>
+				</div>
+			</div>
+		)
+
+	} else if (!loading && !paused) {
         return (
             <div className="wrapper-card">
 			<div className="game-header">
 				<div className="left">
-					<div className="pause-btn">
+					<div className="pause-btn" onClick={() => setPaused(true)}>
 						<i className="bx bx-pause"></i>
 					</div>
 					<div className="current-category">{category}</div>

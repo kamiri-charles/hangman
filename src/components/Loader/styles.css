@@ -1,9 +1,3 @@
-.game-title {
-    font-family: "Bangers", system-ui;
-    font-size: 80px;
-    margin: 40px auto;
-}
-
 .spinner {
     position: absolute;
     top: 50%;
