@@ -12,7 +12,10 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [paused, setPaused] = useState<boolean>(false);
 	const [word, setWord] = useState<string>("");
-	const [health, setHealth] = useState<number>(8);
+	const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
+	const [lives, setLives] = useState<number>(8);
+	const [win, setWin] = useState<boolean>(false);
+	const [lose, setLose] = useState<boolean>(false);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -44,7 +47,6 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 			}
 		}
 
-		
 		// Add "used" class to the pressed key
 		const pressedKey = document.querySelector(`.key[data-letter="${letter}"]`);
 		if (pressedKey) {
@@ -52,11 +54,32 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 				pressedKey.classList.add("used");
 
 				if (!letterFound) {
-					setHealth((prev) => prev - 1);
+					setLives((prev) => prev - 1);
 				}
 			}
 		}
+
+		// Update guessed letters
+		setGuessedLetters((prev) => new Set(prev.add(letter)));
+
+		// Check for win state
+		const uniqueLetters = new Set(
+			word.toLowerCase().replace(/\s+/g, "").split("")
+		);
+		const guessedCorrectly = [...uniqueLetters].every((letter) =>
+			guessedLetters.has(letter)
+		);
+
+		if (guessedCorrectly) {
+			setWin(true);
+		}
+
+		// Check whether the player has run out of lives
+		if (lives <= 0) {
+			setLose(true);
+		}
 	};
+
 
 
     if (loading) {
@@ -76,7 +99,7 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 			</div>
 		)
 
-	} else if (!loading && !paused) {
+	} else if (!loading && !paused && !win && !lose) {
         return (
 					<div className="wrapper-card">
 						<div className="game-header">
@@ -88,7 +111,7 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 							</div>
 
 							<div className="right">
-								<div className="health">Lives: {health}</div>
+								<div className="health">Lives: {lives}</div>
 							</div>
 						</div>
 
@@ -111,7 +134,41 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 						</div>
 					</div>
 				);
-    }
+    } else if (win && !loading) {
+		return (
+			<div className="wrapper-card">
+				<div className="game-title">HANGMAN</div>
+				<div className="win-text">Congratulations! You won!</div>
+				<div className="win-word">Your word was "<span>{word}</span>".</div>
+				<div className="pause-buttons">
+					<div className="ps-btn" onClick={() => changePage("categories")}>
+						New Category
+					</div>
+					<div className="ps-btn" onClick={() => changePage("main-menu")}>
+						Main Menu
+					</div>
+				</div>
+			</div>
+		);
+	} else if (lose && !loading) {
+		return (
+			<div className="wrapper-card">
+				<div className="game-title">HANGMAN</div>
+				<div className="win-text">Oh no! You ran out of lives!</div>
+				<div className="win-word">
+					Your word was "<span>{word}</span>".
+				</div>
+				<div className="pause-buttons">
+					<div className="ps-btn" onClick={() => changePage("categories")}>
+						New Category
+					</div>
+					<div className="ps-btn" onClick={() => changePage("main-menu")}>
+						Main Menu
+					</div>
+				</div>
+			</div>
+		);
+	}
 };
 
 export default Game;

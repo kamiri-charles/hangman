@@ -31,6 +31,11 @@
     text-align: center;
     border-radius: 5px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ps-btn:hover {
+    background: skyblue;
 }
 
 .current-category {
@@ -94,4 +99,18 @@
 .key.used {
     background: gray;
     color: white;
+}
+
+.win-text {
+    margin: 0 auto;
+    text-align: center;
+    font-size: 24px;
+}
+.win-word {
+    font-size: 24px;
+    margin: 0 auto;
+}
+
+.win-word span {
+    color: skyblue;
 }

@@ -7,7 +7,7 @@ const Loader: React.FC = () => {
 			<div className="game-title">Hangman</div>
 			<div className="spinner">
 				<PongSpinner color="white" size={100} />
-				<span>Loading...</span>
+				<span className="load-text">Loading...</span>
 			</div>
 		</div>
 	);
