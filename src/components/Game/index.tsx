@@ -12,7 +12,6 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [paused, setPaused] = useState<boolean>(false);
 	const [word, setWord] = useState<string>("");
-	const [guessedLetters, setGuessedLetters] = useState<Set<string>>(new Set());
 	const [lives, setLives] = useState<number>(8);
 	const [win, setWin] = useState<boolean>(false);
 	const [lose, setLose] = useState<boolean>(false);
@@ -36,6 +35,7 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 		String.fromCharCode(97 + i)
 	);
 
+
 	const handle_key_press = (letter: string) => {
 		const letters_divs = document.getElementsByClassName("letter");
 		let letterFound = false;
@@ -47,7 +47,6 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 			}
 		}
 
-		// Add "used" class to the pressed key
 		const pressedKey = document.querySelector(`.key[data-letter="${letter}"]`);
 		if (pressedKey) {
 			if (!pressedKey.classList.contains("used")) {
@@ -59,23 +58,13 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 			}
 		}
 
-		// Update guessed letters
-		setGuessedLetters((prev) => new Set(prev.add(letter)));
-
-		// Check for win state
-		const uniqueLetters = new Set(
-			word.toLowerCase().replace(/\s+/g, "").split("")
-		);
-		const guessedCorrectly = [...uniqueLetters].every((letter) =>
-			guessedLetters.has(letter)
-		);
-
-		if (guessedCorrectly) {
+		// Check for win/lose conditions after updating displayed letters
+		const displayedLetters = Array.from(
+			document.getElementsByClassName("letter")
+		).every((letterDiv) => letterDiv.classList.contains("found"));
+		if (displayedLetters) {
 			setWin(true);
-		}
-
-		// Check whether the player has run out of lives
-		if (lives <= 0) {
+		} else if (lives <= 1) {
 			setLose(true);
 		}
 	};
