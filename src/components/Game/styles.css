@@ -13,7 +13,7 @@
 }
 
 .pause-btn {
-    font-size: 50px;
+    font-size: 30px;
     margin-inline: 30px;
     cursor: pointer;
 }
@@ -39,7 +39,7 @@
 }
 
 .current-category {
-    font-size: 30px;
+    font-size: 24px;
 }
 
 .play-area {
@@ -62,11 +62,15 @@
 }
 
 .letter {
+    width: 40px;
+    height: 40px;
     margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: white;
     color: black;
     border-radius: 10px;
-    padding: 10px 15px;
     color: white;
     transition: all 0.3s ease;
 }
@@ -86,9 +90,13 @@
 }
 
 .key {
-    font-size: 20px;
-    padding: 10px 20px;
+    width: 40px;
+    height: 40px;
+    font-size: 24px;
     margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: skyblue;
     color: black;
     border-radius: 5px;
@@ -113,4 +121,21 @@
 
 .win-word span {
     color: skyblue;
+}
+
+@media (max-width: 768px) {
+
+    
+
+    .current-category {
+        
+        text-align: center;
+    }
+
+    .word {
+        margin: 0;
+    }
+    .keys {
+        width: 100%;
+    }
 }

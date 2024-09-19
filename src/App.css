@@ -37,3 +37,12 @@
     font-size: 80px;
     margin: 40px auto;
 }
+
+@media (max-width: 768px) {
+  .wrapper-card {
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+}

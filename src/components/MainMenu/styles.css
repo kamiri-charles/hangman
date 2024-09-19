@@ -26,8 +26,8 @@
     top: 80%;
     left: 50%;
     transform: translateX(-50%);
-    background: black;
-    color: white;
+    background: white;
+    color: black;
     padding: 10px 20px;
     border-radius: 10px;
     cursor: pointer;
