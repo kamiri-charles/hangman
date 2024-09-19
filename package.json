@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "boxicons": "^2.1.4",
+    "hangman": "file:",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-spinners-kit": "^1.9.1"
