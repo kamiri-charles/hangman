@@ -21,6 +21,12 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 			setLoading(false); 
 		}, 2000);
 
+		const keypress_listener = (event: KeyboardEvent) => {
+			handle_key_press(event.key.toUpperCase());
+		};
+
+		window.addEventListener("keydown", keypress_listener);
+
 		setWord(
 			data[category as keyof typeof data][
 				Math.floor(Math.random() * data[category as keyof typeof data].length)
@@ -28,13 +34,15 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 		);
 
 		// Clean up the timer when the component unmounts
-		return () => clearTimeout(timer);
+		return () => {
+			clearTimeout(timer);
+			window.removeEventListener("keydown", keypress_listener);
+		}
 	}, []);
 
 	const alphabet = Array.from({ length: 26 }, (_, i) =>
 		String.fromCharCode(97 + i)
 	);
-
 
 	const handle_key_press = (letter: string) => {
 		const letters_divs = document.getElementsByClassName("letter");
@@ -48,6 +56,7 @@ const Game: React.FC<GameProps> = ({ category, changePage }) => {
 		}
 
 		const pressedKey = document.querySelector(`.key[data-letter="${letter}"]`);
+
 		if (pressedKey) {
 			if (!pressedKey.classList.contains("used")) {
 				pressedKey.classList.add("used");
